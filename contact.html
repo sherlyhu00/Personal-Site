@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Yirui Hu - Transportation Planner">
+    <title>Contact | Yirui Hu</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-section">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <h2 class="mb-0">Yirui Hu</h2>
+                    <p class="profession mb-0">Transportation Planner & GIS Specialist</p>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="aboutme.html">About Me</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projects.html">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header py-5">
+            <div class="container">
+                <h1 class="display-4 fw-bold text-center mb-3">Get In Touch</h1>
+                <p class="lead text-center">I'd love to hear from you about collaboration opportunities, projects, or questions</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Contact Information -->
+                    <div class="col-lg-5 mb-5 mb-lg-0">
+                        <h2 class="h3 mb-4">Contact Information</h2>
+                        <p class="mb-4">
+                            Feel free to reach out to me through any of the following channels. I'm always open to
+                            discussing transportation planning, GIS projects, research collaborations, or career opportunities.
+                        </p>
+
+                        <div class="contact-info-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Email</h3>
+                                    <a href="mailto:nochkosleten@gmail.com" class="contact-link">nochkosleten@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-phone fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Phone</h3>
+                                    <a href="tel:+14044526322" class="contact-link">+1 (404) 452-6322</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item mb-4">
+                            <div class="d-flex align-items-start">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="h6 mb-1">Location</h3>
+                                    <p class="mb-0">Atlanta, Georgia, United States</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-section mt-5">
+                            <h3 class="h5 mb-3">Connect With Me</h3>
+                            <div class="social-links-large">
+                                <a href="https://www.linkedin.com/in/yirui-hu-13a015210/" target="_blank"
+                                   class="social-link-card d-flex align-items-center p-3 mb-3">
+                                    <i class="fab fa-linkedin fa-3x text-primary me-3"></i>
+                                    <div>
+                                        <h4 class="h6 mb-0">LinkedIn</h4>
+                                        <p class="small text-muted mb-0">Connect professionally</p>
+                                    </div>
+                                </a>
+
+                                <a href="https://github.com/sherlyhu00" target="_blank"
+                                   class="social-link-card d-flex align-items-center p-3 mb-3">
+                                    <i class="fab fa-github fa-3x text-dark me-3"></i>
+                                    <div>
+                                        <h4 class="h6 mb-0">GitHub</h4>
+                                        <p class="small text-muted mb-0">View my code and projects</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="col-lg-7">
+                        <div class="contact-form-wrapper">
+                            <h2 class="h3 mb-4">Send Me a Message</h2>
+                            <form id="contactForm" class="contact-form">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="subject" class="form-label">Subject *</label>
+                                        <input type="text" class="form-control" id="subject" name="subject" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Message *</label>
+                                        <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                                            <label class="form-check-label small" for="privacyCheck">
+                                                I agree that my submitted data is being collected and stored.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div id="formMessage" class="alert mt-3 d-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Availability Section -->
+        <section class="availability-section py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="h3 mb-4">Current Availability</h2>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="availability-card p-4">
+                                    <i class="fas fa-briefcase fa-3x text-primary mb-3"></i>
+                                    <h3 class="h6 mb-2">Jobs</h3>
+                                    <p class="small mb-0">Open to work - Available for immediate start</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="availability-card p-4">
+                                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                                    <h3 class="h6 mb-2">Collaboration</h3>
+                                    <p class="small mb-0">Available for research collaborations and projects</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="availability-card p-4">
+                                    <i class="fas fa-comments fa-3x text-primary mb-3"></i>
+                                    <h3 class="h6 mb-2">Consulting</h3>
+                                    <p class="small mb-0">Open to GIS and transportation planning consulting opportunities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h2 class="h3 mb-4 text-center">Frequently Asked Questions</h2>
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq1" aria-expanded="true">
+                                        What type of projects do you work on?
+                                    </button>
+                                </h3>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        I specialize in transportation planning projects with a focus on accessibility,
+                                        sustainable mobility, and GIS-based spatial analysis. This includes transit accessibility
+                                        studies, pedestrian and bicycle planning, land use-transportation modeling, and
+                                        data-driven transportation planning solutions.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq2">
+                                        What tools and software do you use?
+                                    </button>
+                                </h3>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        I'm proficient in ArcGIS Pro, QGIS, Python (including GeoPandas, ArcPy, OSMnx),
+                                        R, SQL, and various database management systems. I also have experience with
+                                        AutoCAD and design tools for creating planning visualizations.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq3">
+                                        Are you available for freelance work?
+                                    </button>
+                                </h3>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, I'm open to freelance consulting opportunities in transportation planning,
+                                        GIS analysis, and data visualization. Please reach out via email to discuss your
+                                        project needs and timeline.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h3 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#faq4">
+                                        How quickly do you respond to inquiries?
+                                    </button>
+                                </h3>
+                                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        I typically respond to all inquiries within 24-48 hours during weekdays. For
+                                        urgent matters, please indicate so in your subject line, and I'll do my best
+                                        to respond more quickly.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-2"><i class="fas fa-envelope me-2"></i>nochkosleten@gmail.com</p>
+                    <p class="mb-0"><i class="fas fa-phone me-2"></i>+1-404-452-6322</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links mb-3">
+                        <a href="https://www.linkedin.com/in/yirui-hu-13a015210/" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin fa-2x"></i>
+                        </a>
+                        <a href="https://github.com/sherlyhu00" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github fa-2x"></i>
+                        </a>
+                    </div>
+                    <p class="copyright mb-0">&copy; 2024 Yirui Hu. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

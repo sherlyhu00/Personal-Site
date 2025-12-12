@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transfer Location Impact on Public Transit Accessibility - San Francisco">
+    <title>SF Transit Accessibility Analysis | Yirui Hu</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1A1A1D;
+            overflow-x: hidden;
+        }
+
+        /* 返回按钮 */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(52, 152, 219, 0.95);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: rgba(41, 128, 185, 0.95);
+            color: white;
+            transform: translateX(-3px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+        }
+
+        /* 项目头部信息卡片 */
+        .project-header {
+            background: linear-gradient(135deg, #1A1A1D 0%, #242426 100%);
+            padding: 40px 20px 30px;
+            margin-bottom: 0;
+            border-bottom: 3px solid #3498DB;
+        }
+
+        .project-title {
+            color: #3498DB;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .project-subtitle {
+            color: #999;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #E8E8E8;
+        }
+
+        .meta-item i {
+            color: #3498DB;
+        }
+
+        .project-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(52, 152, 219, 0.15);
+            color: #3498DB;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+        }
+
+        /* StoryMap 容器 */
+        .storymap-container {
+            width: 100%;
+            height: calc(100vh - 200px);
+            min-height: 700px;
+            background: #000;
+            position: relative;
+        }
+
+        .storymap-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 加载动画 */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1A1A1D;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(52, 152, 219, 0.2);
+            border-top-color: #3498DB;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #3498DB;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* 项目亮点 */
+        .project-highlights {
+            background: #242426;
+            padding: 30px 20px;
+            margin-top: 0;
+        }
+
+        .highlights-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .highlight-card {
+            background: rgba(52, 152, 219, 0.05);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            background: rgba(52, 152, 219, 0.1);
+            border-color: rgba(52, 152, 219, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .highlight-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3498DB;
+            margin-bottom: 5px;
+        }
+
+        .highlight-label {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 1.6rem;
+            }
+
+            .project-subtitle {
+                font-size: 1rem;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .back-button {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .storymap-container {
+                height: calc(100vh - 250px);
+                min-height: 500px;
+            }
+
+            .project-highlights {
+                padding: 20px 10px;
+            }
+
+            .highlights-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* 全屏模式提示 */
+        .fullscreen-tip {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: rgba(52, 152, 219, 0.95);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fullscreen-tip i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回按钮 -->
+    <a href="projects.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Projects
+    </a>
+
+    <!-- 项目头部 -->
+    <div class="project-header">
+        <div class="container">
+            <h1 class="project-title">
+                <i class="fas fa-exchange-alt me-2"></i>
+                Transfer Location Impact on Public Transit Accessibility
+            </h1>
+            <p class="project-subtitle">Comprehensive Analysis of Transfer Station Influence on San Francisco Muni Metro Network Accessibility</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>May 2024 - July 2024</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>San Francisco, CA</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Applied Research Project</span>
+                </div>
+            </div>
+
+            <div class="project-tags">
+                <span class="tag">Transit Accessibility</span>
+                <span class="tag">GTFS Analysis</span>
+                <span class="tag">Python</span>
+                <span class="tag">ArcGIS Pro</span>
+                <span class="tag">Network Analysis</span>
+                <span class="tag">Spatial Modeling</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 项目亮点 -->
+    <div class="project-highlights">
+        <div class="highlights-container">
+            <div class="highlight-card">
+                <div class="highlight-number">1,500</div>
+                <div class="highlight-label">Origin-Destination Pairs Analyzed</div>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-number">113</div>
+                <div class="highlight-label">Muni Metro Stations</div>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-number">20.8%</div>
+                <div class="highlight-label">Transfer-Required Trips</div>
+            </div>
+            <div class="highlight-card">
+                <div class="highlight-number">GTFS</div>
+                <div class="highlight-label">Real-Time Data Source</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- StoryMap 嵌入 -->
+    <div class="storymap-container">
+        <!-- 加载动画 -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="spinner"></div>
+            <div class="loading-text">Loading Interactive StoryMap...</div>
+        </div>
+
+        <!-- StoryMap iframe -->
+        <iframe
+            id="storymapIframe"
+            class="storymap-iframe"
+            src="https://storymaps.arcgis.com/stories/cb58ec72cdad4b45bd2da5720500455d"
+            frameborder="0"
+            allowfullscreen
+            allow="geolocation">
+        </iframe>
+    </div>
+
+    <!-- 全屏提示 -->
+    <div class="fullscreen-tip" id="fullscreenTip">
+        <i class="fas fa-expand"></i>
+        Scroll to explore the story & click fullscreen for best experience
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // StoryMap 加载完成后隐藏加载动画
+        const iframe = document.getElementById('storymapIframe');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const fullscreenTip = document.getElementById('fullscreenTip');
+
+        iframe.addEventListener('load', function() {
+            setTimeout(function() {
+                loadingOverlay.classList.add('hidden');
+            }, 500);
+        });
+
+        // 5秒后自动隐藏全屏提示
+        setTimeout(function() {
+            if (fullscreenTip) {
+                fullscreenTip.style.opacity = '0';
+                fullscreenTip.style.transition = 'opacity 0.5s ease';
+                setTimeout(function() {
+                    fullscreenTip.style.display = 'none';
+                }, 500);
+            }
+        }, 5000);
+
+        // 如果加载超过10秒，也隐藏加载动画
+        setTimeout(function() {
+            if (!loadingOverlay.classList.contains('hidden')) {
+                loadingOverlay.classList.add('hidden');
+            }
+        }, 10000);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
